@@ -70,13 +70,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'arriendos.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+import os
+from pathlib import Path
 
+# Configura BASE_DIR
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Configura DATABASES para usar PostgreSQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'arriendos',          # Nombre de tu base de datos
+        'USER': 'postgres',           # Nombre de usuario de PostgreSQL
+        'PASSWORD': '123',            # Contraseña del usuario
+        'HOST': 'localhost',          # Host de PostgreSQL (cambia si es remoto)
+        'PORT': '5432',               # Puerto de PostgreSQL (por defecto es 5432)
     }
 }
 
