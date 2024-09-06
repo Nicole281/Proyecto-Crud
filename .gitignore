@@ -1,0 +1,9 @@
+ # Ignorar archivos de caché de Python
+__pycache__/
+
+# Ignorar carpetas de migraciones de Django
+migrations/
+
+# Ignorar el entorno virtual
+env/
+
