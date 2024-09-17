@@ -1,8 +1,9 @@
-# main/urls.py
 from django.urls import path
-from . import views  # Import views from the current package
+from main.views import index, register
+from main.views import index, register, profile
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('accounts/register/', views.register, name='register'),  # Use views.register
+    path('', index, name='index'),
+    path('accounts/register/', register, name='register',),
+    path('accounts/profile/', profile, name='profile',),
 ]
