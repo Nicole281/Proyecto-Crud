@@ -1,8 +1,8 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-3 custom-navbar">
-    <div class="container d-flex flex-wrap">
-        <a class="navbar-brand" href="/">
-            <img class="img-logo" src="{% static 'img/logo.jpg' %}" alt="Logo arriendos">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-3 custom-navbar">
+    <div class="container d-flex flex-wrap align-items-center">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img class="img-logo me-2" src="{% static 'img/logo.jpg' %}" alt="Logo arriendos" >
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,36 +11,36 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link text-dark" aria-current="page" href="/">Inicio</a>
+                    <a class="nav-link text-dark fw-semibold" aria-current="page" href="/">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Contacto</a>
+                    <a class="nav-link text-dark fw-semibold" href="#">Contacto</a>
                 </li>
                 {% if user.is_authenticated %}
-                    {% if user.userprofile.rol == 'arrendador' or user.is_staff %}
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">Agregar Propiedad</a>
+                        <a class="nav-link text-dark fw-semibold" href="{% url 'profile' %}">Mis Datos</a>
+                    </li>
+                    {% if user.userprofile.rol == 'arrendador' or user.is_staff %}
+                    <li class="nav-item ms-2">
+                        <a href="{% url 'add_propiedad' %}" class="btn btn-outline-success fw-semibold rounded-pill">Agregar Propiedad</a>
                     </li>
                     {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="{% url 'profile' %}">Mis Datos</a>
-                    </li>
                 {% endif %}
             </ul>
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <form action="{% url 'logout' %}" method="post">
+                    <form action="{% url 'logout' %}" method="post" class="d-inline">
                         {% csrf_token %}
-                        <button class="btn btn-outline-light" type="submit">Cerrar Sesión</button>
+                        <button class="btn btn-outline-primary fw-semibold rounded-pill me-2" type="submit">Cerrar Sesión</button>
                     </form>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a href="{% url 'login' %}" class="btn btn-light me-2">Ingresar</a>
+                    <a href="{% url 'login' %}" class="btn btn-outline-primary fw-semibold rounded-pill me-2">Ingresar</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'register' %}" class="btn btn-light">Regístrate</a>
+                    <a href="{% url 'register' %}" class="btn btn-primary fw-semibold rounded-pill ">Regístrate</a>
                 </li>
                 {% endif %}
             </ul>
